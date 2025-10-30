@@ -17,9 +17,15 @@ public class Pilas {
         Scanner sc = new Scanner(System.in);
         int op = 0;
         
+        System.out.print("Ingrese el tamano de la pila: ");
+        
+        int t = sc.nextInt();
+        
+        Pila miPila = new Pila(t);
+        
         do
         {
-            System.out.println("MENU PILAS");
+            System.out.println("\nMENU PILAS");
             
             System.out.println("1. Tamano de pila");
             System.out.println("2. Push");
@@ -32,30 +38,43 @@ public class Pilas {
             
             System.out.println("");
             
-            Opciones(op, sc);
-            
+            Opciones(op, sc, miPila);
+             
             sc.nextLine();
-            System.out.print("\n\nPRESIONE ENTER PARA CONTINUAR...");
+            System.out.print("\nPRESIONE ENTER PARA CONTINUAR...");
             sc.nextLine();
         }while ( op != 5 );
         
         sc.close();
     }
-    static void Opciones(int op, Scanner sc)
+    static void Opciones(int op, Scanner sc, Pila pila)
     {
         switch (op) 
         {
             case 1:
-                System.out.print("En proceso..");
+                int i = pila.Count();
+                
+                System.out.println("El tamano de la pila es de: " +i);
                 break; 
             case 2:
-                System.out.print("En proceso..");
+                System.out.print("Ingrese el valor a agregar: ");
+                int valor = sc.nextInt();
+                
+                if(pila.Push(valor))
+                    System.out.println("Se agrego el valor exitosamente");
+                else
+                    System.out.println("No fue posible agregar el valor");
                 break;
             case 3:
-                System.out.print("En proceso..");
+                int p = pila.Pop();
+                
+                if (p == -1)
+                    System.out.println("La pila esta vacia");
+                else
+                    System.out.println("Se elimino el nodo con valor de: " +p);
                 break;
             case 4:
-                System.out.print("En proceso..");
+                pila.Print();
                 break;
             case 5:
                 System.out.println("Saliendo..");
