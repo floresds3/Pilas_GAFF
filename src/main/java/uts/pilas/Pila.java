@@ -14,11 +14,11 @@ public class Pila
     private int maxSize;
     private int tope;
     
-    public Pila(int maximo)
+    public Pila()
     {
         inicio = null;
-        maxSize = maximo;
         tope = 0;
+        maxSize = 0;
     }
     
     public boolean Full()
@@ -31,9 +31,31 @@ public class Pila
         return inicio == null;
     }
     
-    public int Count()
+    public boolean Size(int newTamano)
     {        
-        return tope;
+        if (newTamano > 0 && newTamano != maxSize)
+        {
+            maxSize = newTamano;
+            
+            nodo act = inicio;
+            
+            if (newTamano < tope)
+            {
+                for (int i = 1; i < newTamano; i++)
+                {
+                    act = act.sig;
+                }
+                
+                act.sig = null;
+                
+                tope = newTamano;
+                        
+            }
+            
+            return true;
+        }
+        else
+            return false;
     }
     
     public boolean Push(int v)
@@ -104,12 +126,26 @@ public class Pila
             System.out.println("La pila esta vacia");
         else 
         {
+//            nodo act = inicio;
+//            while(act != null)
+//            {
+//                System.out.println(act.valor);
+//                act = act.sig;
+//            }
+            
             nodo act = inicio;
-            while(act != null)
-            {
-                System.out.println(act.valor);
-                act = act.sig;
-            }
+            
+            RecursividadPrint(act);
         }
+    }
+    
+    public void RecursividadPrint(nodo act)
+    {
+      if (act.sig != null)
+      {
+        RecursividadPrint(act.sig);
+      }
+      
+        System.out.println(act.valor);
     }
 }

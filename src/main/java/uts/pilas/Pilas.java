@@ -17,17 +17,13 @@ public class Pilas {
         Scanner sc = new Scanner(System.in);
         int op = 0;
         
-        System.out.print("Ingrese el tamano de la pila: ");
-        
-        int t = sc.nextInt();
-        
-        Pila miPila = new Pila(t);
+        Pila miPila = new Pila();
         
         do
         {
             System.out.println("\nMENU PILAS");
             
-            System.out.println("1. Tamano de pila");
+            System.out.println("1. Asignar tamano de pila");
             System.out.println("2. Push");
             System.out.println("3. Pop");
             System.out.println("4. Imprimir pila");
@@ -51,10 +47,14 @@ public class Pilas {
     {
         switch (op) 
         {
-            case 1:
-                int i = pila.Count();
+            case 1:                
+                System.out.println("Ingrese el tamano de la pila: ");
+                int t = sc.nextInt();
                 
-                System.out.println("El tamano de la pila es de: " +i);
+                if(pila.Size(t))
+                    System.out.println("El tamano de la pila fue modificado exitosamente");
+                else
+                    System.out.println("No ha sido posible modificar la pila");
                 break; 
             case 2:
                 System.out.print("Ingrese el valor a agregar: ");
@@ -66,12 +66,12 @@ public class Pilas {
                     System.out.println("No fue posible agregar el valor");
                 break;
             case 3:
-                int p = pila.Pop();
+                int e = pila.Pop();
                 
-                if (p == -1)
+                if (e == -1)
                     System.out.println("La pila esta vacia");
                 else
-                    System.out.println("Se elimino el nodo con valor de: " +p);
+                    System.out.println("Se elimino el nodo con valor de: " +e);
                 break;
             case 4:
                 pila.Print();
